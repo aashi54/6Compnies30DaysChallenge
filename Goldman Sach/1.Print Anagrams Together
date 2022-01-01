@@ -1,0 +1,20 @@
+// Tc = O(n+n*mlogm) == O(n*mlogm) SC = O(n)
+class Solution{
+  public:
+    vector<vector<string> > Anagrams(vector<string>& string_list) {
+        //code here
+        map<string, vector<string>> mp;
+        int n = string_list.size();
+        
+       for(auto &it : string_list){
+           string s = it;
+           sort(it.begin(), it.end());
+           mp[it].push_back(s);
+       }
+       vector<vector<string>> ans;
+       for(auto i: mp){
+           ans.push_back(i.second);
+       }
+       return ans;
+    }
+};
