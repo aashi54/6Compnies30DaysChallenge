@@ -1,0 +1,38 @@
+class Solution{
+public:	
+	// #define ull unsigned long long
+	/* Function to get the nth ugly number*/
+  // TC= O(n) SC= O(n)
+
+	ull getNthUglyNo(int n) {
+	    // code here
+	    unsigned ugly[n];
+    unsigned i2 = 0, i3 = 0, i5 = 0;
+    unsigned nm2 = 2;
+    unsigned nm3 = 3;
+    unsigned nm5 = 5;
+    unsigned nun = 1;
+ 
+    ugly[0] = 1;
+    for (int i = 1; i < n; i++) {
+        nun = min({nm2,nm3, nm5});
+        ugly[i] = nun;
+        if (nun == nm2) {
+            i2 = i2 + 1;
+            nm2 = ugly[i2] * 2;
+        }
+        if (nun == nm3) {
+            i3 = i3 + 1;
+            nm3 = ugly[i3] * 3;
+        }
+        if (nun == nm5) {
+            i5 = i5 + 1;
+            nm5 = ugly[i5] * 5;
+        }
+    } 
+   
+    // End of for loop (i=1; i<n; i++)
+    return nun;
+	    
+	}
+};
