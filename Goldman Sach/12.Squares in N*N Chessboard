@@ -1,0 +1,32 @@
+//TC= O(1), SC=O(1)
+
+class Solution {
+  public:
+    long long squaresInChessBoard(long long N) {
+        // code here
+        long long ans =0;
+        
+        while(N>=1){
+            
+            long long prod = N*N;
+            ans+= prod;
+            N--;
+        }
+        
+        return ans;
+    }
+};
+-----------------------------------------------------------------------
+
+// TC = O(1) , SC= O(1)
+
+class Solution {
+  public:
+    long long squaresInChessBoard(long long N) {
+        // code here
+        
+        long long ans = (N*(N+1)*(2*N+1))/6;
+        
+        return ans;
+    }
+};
