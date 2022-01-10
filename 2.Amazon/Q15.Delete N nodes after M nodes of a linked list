@@ -1,0 +1,22 @@
+class Solution
+{
+    public:
+    void linkdelete(struct Node  *head, int M, int N)
+    {
+        //Add code here 
+        Node *left = head;
+        
+        while(left){
+            for(int i=1;i<M && left; i++){
+                left = left->next;
+            }
+            if(!left) return;
+            Node *temp = left;
+            for(int j=0;j<=N && temp;j++){
+                temp = temp->next;
+            }
+            left->next = temp;
+            left = temp;
+        }
+    }
+};
