@@ -1,0 +1,15 @@
+class Solution {
+public:
+    
+    int helper(int n, vector<int> &dp,int i){
+        if(n==i) return 1;
+        if(i>n) return 0;
+        if(dp[i]!= -1) return dp[i];
+        else return dp[i] = helper(n, dp,i+1) + helper(n,dp,i+2);
+    }
+    int climbStairs(int n) {
+       
+        vector<int> dp(n+1,-1);
+        return helper(n,dp,0);
+    }
+};
