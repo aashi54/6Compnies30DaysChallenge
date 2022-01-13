@@ -1,0 +1,24 @@
+class StockSpanner {
+public:
+    stack<int>s;  // to push only the index
+    vector<int>v;  // to push the cost of stack at the day
+    int i=0;
+    StockSpanner() {
+        
+    }
+    
+    int next(int price)
+    {
+        v.push_back(price); // The vector every time collecting the upcoming stock of the day
+        while(!s.empty() and v[s.top()]<=v[i]) //check if filled and also the prev top is if less than current day then
+        {
+            s.pop();                // pop() the index ..do till u get the greater no. than the current one
+        }
+        int span= s.empty()?i+1:i-s.top();    // if s is empty means it holds greater and result is i+i else ( i - the last smallest index )
+        
+        s.push(i); // push that i 
+        i++;        
+        return span;
+        
+    }
+};
