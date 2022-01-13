@@ -1,0 +1,20 @@
+class Solution
+{
+    public:
+    
+    int help(int arr[], int i, vector<int>&dp, int n){
+        if(i>=n) return 0;
+        if(dp[i]!=-1) return dp[i];
+        
+        int opt1 = arr[i]+help(arr, i+2,dp,n);
+        int opt2 = help(arr,i+1,dp,n);
+        return dp[i] = max(opt1, opt2);
+    }
+    //Function to find the maximum money the thief can get.
+    int FindMaxSum(int arr[], int n)
+    {
+        // Your code here
+        vector<int> dp(n, -1);
+        return help(arr,0,dp,n);
+    }
+};
