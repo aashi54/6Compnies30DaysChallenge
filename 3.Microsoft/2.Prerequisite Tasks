@@ -1,0 +1,40 @@
+class Solution {
+public:
+  bool dfs(int s,vector<int> &vis, vector<int> &pathVis,vector<int>adj[]){
+      vis[s]=1;
+      pathVis[s]=1;
+      
+      for(auto it: adj[s]){
+          if(vis[it]==0){
+              if(dfs(it,vis,pathVis,adj)==true)
+              return true;
+          }
+          else if(pathVis[it]==1)
+          return true;
+      }
+      pathVis[s]==0;
+      return false;
+  }
+
+
+	bool isPossible(int N, vector<pair<int, int> >& prerequisites) {
+	    // Code here
+	    vector<int> vis(N,0);
+	    vector<int> pathVis(N,0);
+	    
+	    vector<int> adj[N];
+	    
+	    for(auto it : prerequisites){
+	        adj[it.second].push_back(it.first);
+	    }
+	    
+	    for(int i=0;i<N;i++){
+	        if(!vis[i]){
+	            if(dfs(i,vis,pathVis,adj)==true)
+	                return false;
+	            
+	        }
+	    }
+	    return true;
+	}
+};
