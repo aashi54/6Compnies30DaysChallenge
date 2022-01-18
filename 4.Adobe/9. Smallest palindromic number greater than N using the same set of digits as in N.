@@ -1,0 +1,29 @@
+class Solution{
+  public:
+    string nextPalin(string N) { 
+        //complete the function here
+        int len = N.length();
+        string x;
+        if(len<=3) return "-1";
+        int mid = len/2 -1;
+        
+        string firstHalf = N.substr(0,mid+1);
+        string prevFirstHalf = firstHalf;
+        
+        next_permutation(firstHalf.begin(), firstHalf.end());
+        
+        if(firstHalf <= prevFirstHalf) return "-1";
+        x+= firstHalf;
+        
+        
+        if(len %2 ==1) x+= N[len/2];
+        
+        string secondHalf = firstHalf;
+        reverse(secondHalf.begin(), secondHalf.end());
+        
+        x+=secondHalf;
+        return x;
+        
+        
+    }
+};
