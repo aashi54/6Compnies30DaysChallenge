@@ -1,0 +1,24 @@
+class Solution {
+public:
+int ans =0;
+int f(vector<int> &A, int i, int j,vector<vector<int>> &dp){
+    
+    if(i>j) return dp[i][j] =0;
+    if(i==j) return dp[i][j] = A[i];
+    if(dp[i][j] != -1) return dp[i][j];
+    
+    int l = A[i] + min(f(A,i+2,j,dp), f(A,i+1,j-1,dp));
+    int r = A[j] + min(f(A,i+1,j-1,dp), f(A,i,j-2,dp));
+    
+    return dp[i][j]= max(l,r);
+}
+
+    int maxCoins(vector<int>&A,int n)
+    {
+	    //Write your code here
+	   
+	    vector<vector<int>> dp(n+1, vector<int>(n+1,-1));
+	    
+	   return f(A,0,n-1,dp);
+    }
+};
