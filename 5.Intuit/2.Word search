@@ -1,0 +1,47 @@
+class Solution {
+const int dx[4]={1,-1,0,0};
+const int dy[4] = {0,0,1,-1};
+ 
+public:
+    
+    bool dfs(vector<vector<char>>& board, string &word, int index,int x, int y,int n,int m,vector<vector<bool>> &vis){
+        
+         vis[x][y] = true;
+        if(index==word.size()-1) return true;
+        
+        for(int i =0;i<4;i++){
+            int nexti = x+dx[i];
+            int nextj = y+dy[i];
+            
+            if(nexti>=0 && nexti<n && nextj>=0 && nextj<m && !vis[nexti][nextj]
+              && board[nexti][nextj]==word[index+1]){
+               
+                if(dfs(board,word,index+1,nexti,nextj,n,m,vis)){
+                    return true;
+                }
+               
+            }
+        }
+        vis[x][y] =false;
+        return false;
+    }
+    
+    bool exist(vector<vector<char>>& board, string word) {
+        int n= board.size();
+        int m = board[0].size();
+        
+        vector<vector<bool>> vis(n, vector<bool>(m,false));
+        
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(board[i][j]==word[0] && dfs(board,word,0,i,j,n,m,vis)) return true;
+            }
+        }
+        return false;
+    }
+};
+
+/////////////////////////////
+// For searching in all 8 direction
+int x[] = { -1, -1, -1,  0, 0,  1, 1, 1 };
+int y[] = { -1,  0,  1, -1, 1, -1, 0, 1 };
