@@ -1,0 +1,24 @@
+class Solution
+{
+    public:
+    //Function to find total number of unique paths.
+    int helper(int i, int j,vector<vector<int>> &dp){
+        if(i==1 || j==1) return dp[i][j] = 1;
+        if(dp[i][j]!=-1) return dp[i][j];
+        
+        int opt1 = helper(i-1,j,dp);
+        int opt2= helper(i,j-1,dp);
+        
+        dp[i][j] = opt1+opt2;
+        return dp[i][j] ;
+    }
+    int NumberOfPath(int a, int b)
+    {
+        //code here
+        vector<vector<int>> dp(a+1,vector<int>(b+1,-1));
+       // memset(dp,-1,sizeof dp);
+       
+       return helper(a,b,dp);
+        
+    }
+};
