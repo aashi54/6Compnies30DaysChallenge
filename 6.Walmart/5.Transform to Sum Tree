@@ -1,0 +1,21 @@
+class Solution {
+  public:
+  
+  int helper(Node *root){
+      if(!root) return 0;
+      int lst = helper(root->left);
+      int rst = helper(root->right);
+      int tmp = root->data;
+      if(lst==0 && rst==0) root->data=0;
+      else
+      root->data = lst+rst;
+      return tmp+lst+rst;
+  }
+    // Convert a given tree to a tree where every node contains sum of values of
+    // nodes in left and right subtrees in the original tree
+    void toSumTree(Node *node)
+    {
+        // Your code here
+        helper(node);
+    }
+};
