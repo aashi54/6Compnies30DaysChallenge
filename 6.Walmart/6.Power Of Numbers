@@ -1,0 +1,22 @@
+class Solution{
+    public:
+    //You need to complete this fucntion
+    long long power(int N,int R)
+    {
+       //Your code here
+       if(R==0) return 1;
+       if(R==1) return N;
+       long long ans=1;
+       long long k = power(N,R/2)%mod;
+       
+       if(R&1){
+           ans = (ans*N)%mod;
+           
+       }
+       return (ans*((k*k)%mod))%mod;
+    }
+
+};
+
+//recursion = 
+tc= O(log n) not O(n)
