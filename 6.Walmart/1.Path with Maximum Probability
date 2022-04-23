@@ -1,0 +1,39 @@
+class Solution {
+public:
+    double maxProbability(int n, vector<vector<int>>& edges, vector<double>& succProb, int start, int end) {
+        
+        vector<pair<int,double>> adj[n];
+        int p =0;
+        for(auto &it: edges){
+            adj[it[0]].push_back({it[1],succProb[p]});
+            adj[it[1]].push_back({it[0],succProb[p]});
+            p++;
+        }
+        
+        priority_queue<pair<double,int>>pq;
+        vector<double> maxProb(n,0.0);
+        
+        pq.push({1.0,start});
+        maxProb[start]=1.0;
+        
+        while(!pq.empty()){
+            double dist = pq.top().first;
+            int node = pq.top().second;
+            pq.pop();
+            
+            for(auto it: adj[node]){
+                int adjNode = it.first;
+                double wt = it.second;
+                if(dist*wt>maxProb[adjNode]){
+                    maxProb[adjNode] = dist*wt;
+                    pq.push({maxProb[adjNode],adjNode});
+                }
+            }
+        }
+        
+        return maxProb[end];
+    }
+};
+
+// Time: O(ElogE)
+// Space: O(E)
