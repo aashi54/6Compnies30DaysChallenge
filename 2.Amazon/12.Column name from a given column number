@@ -1,0 +1,36 @@
+class Solution {
+public:
+    string convertToTitle(int n) {
+        string s="";
+        
+        while(n){
+            n = n-1;
+            char c = 'A'+(n%26);
+            s=c+s;
+            n=n/26;
+        }
+        
+        return s;
+    }
+};
+
+//////////////////////////////////////////////////////////////
+
+another type or opposite
+
+class Solution {
+public:
+    int titleToNumber(string s) {
+        int ans =0;
+        int p=0;
+        
+        for(int i=s.size()-1;i>=0;i--){
+            char c = s[i];
+            int val = c - 65+1;
+            ans+=val * pow(26,p);
+            p++;
+        }
+        
+        return ans;
+    }
+};
